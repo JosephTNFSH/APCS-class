@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+#define _ ios::sync_with_stdio(false); cin.tie(0);
+using namespace std;
+
+int main() { _
+	string st, et;
+	cin >> st >> et;
+	int diff[3] = {};
+	diff[2] = (et[6]-'0')*10+et[7]-'0'-((st[6]-'0')*10+st[7]-'0');
+	diff[1] = (et[3]-'0')*10+et[4]-'0'-((st[3]-'0')*10+st[4]-'0');
+	diff[0] = (et[0]-'0')*10+et[1]-'0'-((st[0]-'0')*10+st[1]-'0');
+	if (diff[2]<0) {
+		diff[2] += 60;
+		diff[1]--;
+	}
+	if (diff[1]<0) {
+		diff[1] += 60;
+		diff[0]--;
+	}
+	if (diff[0]<0) {
+		diff[0] += 24;
+	}
+	char ans[9];
+	ans[8] = '\0';
+	for (int i=0; i<3; i++) {
+		if (diff[i]<10) ans[3*i] = '0';
+		else ans[3*i] = char(diff[i]/10+'0');
+		ans[3*i+1] = char(diff[i]%10+'0');
+	}
+	ans[2] = ans[5] = ':';
+	cout << ans << '\n';
+	return 0;
+}
